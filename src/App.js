@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from "@emotion/react";
+import { createTheme, CssBaseline } from "@mui/material";
+import React from "react";
 
-function App() {
+import { Routes, Route } from "react-router";
+import NavigationBar from "./components/NavigationBar";
+import Cart from "./components/pages/Cart";
+
+import LandingPage from "./components/pages/LandingPage";
+import ReachUs from "./components/pages/ReachUs";
+import Shop from "./components/pages/Shop";
+
+const theme = createTheme({
+  palette: {
+    background: {
+      default: "#fce4ec",
+    },
+  },
+});
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <NavigationBar />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/contact" element={<ReachUs />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<ReachUs />} />
+        </Routes>
+      </ThemeProvider>
+    </>
   );
-}
+};
 
 export default App;
