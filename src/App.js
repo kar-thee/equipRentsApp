@@ -3,6 +3,7 @@ import { createTheme, CssBaseline } from "@mui/material";
 import React from "react";
 
 import { Routes, Route } from "react-router";
+import Footer from "./components/Footer";
 import NavigationBar from "./components/NavigationBar";
 import Cart from "./components/pages/Cart";
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<ReachUs />} />
         </Routes>
+        <Footer />
       </ThemeProvider>
     </>
   );

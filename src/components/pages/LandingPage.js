@@ -13,6 +13,9 @@ import React from "react";
 import ImgCarousal from "../ImgCarousal";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Link } from "react-router-dom";
+
+import ImgNA from "../../assets/ImgNA.png";
 
 const LandingPage = () => {
   return (
@@ -28,6 +31,7 @@ const LandingPage = () => {
       </Box>
       <Container maxWidth="xl">
         {/* <Box sx={{ minHeight: "1000px", background: "greenyellow" }}>sdc</Box> */}
+        {/* hero Section */}
         <Container maxWidth="md">
           {/* EquipRents is One-Stop Shop where You can Rent Things Online  */}
           <Grid
@@ -43,7 +47,7 @@ const LandingPage = () => {
               <Typography variant="h6">
                 EquipRents is One-Stop Shop where You can Rent Equipments Online
               </Typography>
-              <Box sx={{ p: 2, my: 2 }}>
+              <Box sx={{ p: 3, my: 2 }}>
                 <Button variant="contained" size="large">
                   Explore Store
                 </Button>
@@ -51,7 +55,7 @@ const LandingPage = () => {
             </Grid>
           </Grid>
         </Container>
-
+        {/* Product Category */}
         <Container
           maxWidth="xl"
           sx={{ my: 5, justifyContent: "center", background: "#ff4081" }}
@@ -70,11 +74,18 @@ const LandingPage = () => {
                   <CardMedia
                     component="img"
                     height="140"
-                    image="https://d3juy0zp6vqec8.cloudfront.net/images/product/MacBook%20Pro%20i7.jpg"
-                    alt="sdc"
+                    sx={{ objectFit: "contain" }}
+                    image="https://i.ytimg.com/vi/TKx03bXj1r0/maxresdefault.jpg"
+                    alt="ImgNA"
                   />
                   <CardActions>
-                    <Button size="small">See More</Button>
+                    <Button
+                      size="small"
+                      component={Link}
+                      to="/store/electronics"
+                    >
+                      Explore
+                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
