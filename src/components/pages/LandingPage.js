@@ -15,7 +15,7 @@ import ImgCarousal from "../ImgCarousal";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from "react-router-dom";
 
-import ImgNA from "../../assets/ImgNA.png";
+import ProductSectionArray from "../../helpers/Categories";
 
 const LandingPage = () => {
   return (
@@ -65,25 +65,21 @@ const LandingPage = () => {
             spacing={2}
             sx={{ justifyContent: "center", my: 2, pb: 2 }}
           >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((d) => (
-              <Grid item xs="12" sm="6" md="4" lg="3" key={d}>
+            {ProductSectionArray.map(({ title, img, href }) => (
+              <Grid item xs="12" sm="6" md="4" lg="3" key={href}>
                 <Card sx={{ maxWidth: 345 }}>
                   <CardContent>
-                    <Typography variant="body1">Electronics</Typography>
+                    <Typography variant="body1">{title}</Typography>
                   </CardContent>
                   <CardMedia
                     component="img"
                     height="140"
                     sx={{ objectFit: "contain" }}
-                    image="https://i.ytimg.com/vi/TKx03bXj1r0/maxresdefault.jpg"
-                    alt="ImgNA"
+                    image={img}
+                    alt={`Browse ${title} Section`}
                   />
                   <CardActions>
-                    <Button
-                      size="small"
-                      component={Link}
-                      to="/store/electronics"
-                    >
+                    <Button size="small" component={Link} to={href}>
                       Explore
                     </Button>
                   </CardActions>
