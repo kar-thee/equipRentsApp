@@ -15,7 +15,7 @@ const HeroSection = [
   {
     title: "Electronics",
     img: ImgElectronics,
-    href: "/store/",
+    href: "/store/electronics",
   },
   {
     title: "Film and photography",

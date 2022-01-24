@@ -25,12 +25,13 @@ const LandingPage = () => {
           my: { xs: 0, md: 4 },
           maxWidth: "md",
           mx: "auto",
+          border: "2px solid #ff4081",
+          boxShadow: { md: "10px 5px 5px #ff80ab,-1em 0 .4em #ff80ab " },
         }}
       >
         <ImgCarousal />
       </Box>
       <Container maxWidth="xl">
-        {/* <Box sx={{ minHeight: "1000px", background: "greenyellow" }}>sdc</Box> */}
         {/* hero Section */}
         <Container maxWidth="md">
           {/* EquipRents is One-Stop Shop where You can Rent Things Online  */}
@@ -41,15 +42,21 @@ const LandingPage = () => {
               background: "#880e4f",
               m: { xs: 0, md: 2 },
               my: { xs: 1, sm: 0 },
+              mt: { xs: 4, sm: 4 },
             }}
           >
-            <Grid item sx={{ p: 3, m: 2, color: "#fce4ec" }} xs="12" md="8">
+            <Grid item sx={{ p: 3, m: 2, color: "#fce4ec" }} xs={12} md={8}>
               <Typography variant="h6">
                 EquipRents is One-Stop Shop where You can Rent Equipments Online
               </Typography>
               <Box sx={{ p: 3, my: 2 }}>
-                <Button variant="contained" size="large">
-                  Explore Store
+                <Button
+                  variant="contained"
+                  size="large"
+                  component={Link}
+                  to="/store"
+                >
+                  Browse in Shop
                 </Button>
               </Box>
             </Grid>
@@ -66,7 +73,7 @@ const LandingPage = () => {
             sx={{ justifyContent: "center", my: 2, pb: 2 }}
           >
             {ProductSectionArray.map(({ title, img, href }) => (
-              <Grid item xs="12" sm="6" md="4" lg="3" key={href}>
+              <Grid item xs={12} sm={6} md={4} lg={3} key={href}>
                 <Card sx={{ maxWidth: 345 }}>
                   <CardContent>
                     <Typography variant="body1">{title}</Typography>
