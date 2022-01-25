@@ -13,16 +13,23 @@ import { Link } from "react-router-dom";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 import ContactFormApi from "../../apis/ContactFormApi";
+import Loader from "../../helpers/Loader";
+
+import useStateValFunc from "../../hooks/useStateValFunc";
+import useDispatchFunc from "../../hooks/useDispatchFunc";
 
 const ReachUs = () => {
-  const [state, setState] = useState({
+  const initialValues = {
     name: "",
     email: "",
     phone: "",
     query: "",
     helperEmail: "",
     helperQuery: "",
-  });
+  };
+  const [state, setState] = useState(initialValues);
+  const [{ loaderState }] = useStateValFunc();
+  const dispatch = useDispatchFunc();
 
   const onChangeHandler = (ev) => {
     setState((prevState) => ({
@@ -51,6 +58,7 @@ const ReachUs = () => {
           ...prevState,
           helperQuery: "Your message here",
         }));
+
     if (state.email && state.query) {
       const body = {
         name: state.name,
@@ -58,7 +66,21 @@ const ReachUs = () => {
         phoneNo: state.phone,
         query: state.query,
       };
+      dispatch({ type: "startLoading" });
       const response = await ContactFormApi(body);
+      dispatch({ type: "stopLoading" });
+      if (response.data.type === "success") {
+        dispatch({
+          type: "snackBar",
+          payload: { msg: response.data.msg, type: "success" },
+        });
+        setState(initialValues);
+      } else {
+        dispatch({
+          type: "snackBar",
+          payload: { msg: response.data.msg, type: "error" },
+        });
+      }
       console.log(response, " api res");
     }
 
@@ -143,7 +165,7 @@ const ReachUs = () => {
             Leave us Your Message :
           </Typography>
           <TextField
-            id="standard-basic"
+            id="name"
             label="Name"
             variant="standard"
             fullWidth
@@ -152,7 +174,7 @@ const ReachUs = () => {
             onChange={(ev) => onChangeHandler(ev)}
           />
           <TextField
-            id="standard-basic"
+            id="email"
             label="Email"
             type="email"
             variant="standard"
@@ -165,7 +187,7 @@ const ReachUs = () => {
             error={state.helperEmail ? true : false}
           />
           <TextField
-            id="standard-basic"
+            id="phoneNo"
             label="PhoneNo"
             variant="standard"
             fullWidth
@@ -174,7 +196,7 @@ const ReachUs = () => {
             onChange={(ev) => onChangeHandler(ev)}
           />
           <TextField
-            id="outlined-multiline-static"
+            id="query"
             label="Please ask your queries here"
             multiline
             rows={10}
@@ -198,7 +220,14 @@ const ReachUs = () => {
           </Box>
         </Container>
       </Box>
-      {/*  */}
+
+      {loaderState ? (
+        <>
+          <Loader />
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Avatar,
@@ -6,6 +6,8 @@ import {
   Box,
   Container,
   IconButton,
+  Menu,
+  MenuItem,
   Toolbar,
   Tooltip,
   Typography,
@@ -15,8 +17,16 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 
 import { Link } from "react-router-dom";
+import { adminMenuList } from "../helpers/NavMenuList";
 
 const NavigationBar = () => {
+  const [state, setState] = useState({ anchorEl: "" });
+  const changeHandler = (ev) => {
+    setState((prev) => ({ ...prev, anchorEl: ev.currentTarget }));
+  };
+  const handleClose = () => {
+    setState((prev) => ({ ...prev, anchorEl: null }));
+  };
   return (
     <>
       <AppBar sx={{ background: "#ec407a" }} position="static">
@@ -57,7 +67,7 @@ const NavigationBar = () => {
 
             <Box>
               <Tooltip title="Manage Account">
-                <IconButton>
+                <IconButton onClick={(ev) => changeHandler(ev)}>
                   <Avatar
                     sx={{
                       color: "#ff4081",
@@ -77,6 +87,22 @@ const NavigationBar = () => {
                   </Avatar>
                 </IconButton>
               </Tooltip>
+              <Menu
+                open={Boolean(state.anchorEl)}
+                anchorEl={state.anchorEl}
+                onClose={() => handleClose()}
+              >
+                {adminMenuList.map((item) => (
+                  <MenuItem
+                    key={item.name}
+                    sx={{ px: 4, color: "#ff4081" }}
+                    component={Link}
+                    to={item.path}
+                  >
+                    {item.name}
+                  </MenuItem>
+                ))}
+              </Menu>
             </Box>
           </Toolbar>
         </Container>
