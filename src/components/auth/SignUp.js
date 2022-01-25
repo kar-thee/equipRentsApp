@@ -6,9 +6,16 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import InputIcon from "@mui/icons-material/Input";
+
+import SignUpApi from "../../apis/SignUpApi";
+import useDispatchFunc from "../../hooks/useDispatchFunc";
+import useStateValFunc from "../../hooks/useStateValFunc";
+import Loader from "../../helpers/Loader";
+import { useNavigate } from "react-router-dom";
+import useUserValidations from "../../hooks/useUserValidations";
 
 const SignUp = () => {
   const [state, setState] = useState({
@@ -19,6 +26,17 @@ const SignUp = () => {
 
   const [helper, setHelper] = useState({ name: "", email: "", password: "" });
 
+  const [{ loaderState }] = useStateValFunc();
+  const dispatch = useDispatchFunc();
+  const navigate = useNavigate();
+  const [checkAuth] = useUserValidations();
+
+  useEffect(() => {
+    if (checkAuth()) {
+      navigate("/shop");
+    }
+  }, [checkAuth, navigate]);
+
   const onChangeHandler = (ev) => {
     setState((prevState) => ({
       ...prevState,
@@ -26,7 +44,7 @@ const SignUp = () => {
     }));
   };
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = async () => {
     state.name
       ? setHelper((prev) => ({ ...prev, name: "" }))
       : setHelper((prev) => ({ ...prev, name: "Necessary Field" }));
@@ -40,8 +58,26 @@ const SignUp = () => {
       : setHelper((prev) => ({ ...prev, password: "Necessary Field" }));
 
     if (state.email && state.password && state.name) {
-      console.log(state);
-      //link api and loader here
+      const body = {
+        name: state.name,
+        email: state.email,
+        password: state.password,
+      };
+      dispatch({ type: "startLoading" });
+      const response = await SignUpApi(body);
+      dispatch({ type: "stopLoading" });
+      if (response.data.type === "success") {
+        dispatch({
+          type: "snackBar",
+          payload: { msg: response.data.msg, type: "success" },
+        });
+        navigate("/shop");
+      } else {
+        dispatch({
+          type: "snackBar",
+          payload: { msg: response.data.msg, type: "error" },
+        });
+      }
     }
   };
 
@@ -97,6 +133,7 @@ const SignUp = () => {
                 fullWidth
                 required
                 name="password"
+                type="password"
                 value={state.password}
                 onChange={(ev) => onChangeHandler(ev)}
                 helperText={helper.password}
@@ -116,6 +153,13 @@ const SignUp = () => {
           </Grid>
         </Container>
       </Box>
+      {loaderState ? (
+        <>
+          <Loader />
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 };

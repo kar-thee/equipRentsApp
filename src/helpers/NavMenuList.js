@@ -1,3 +1,5 @@
+import useUserValidations from "../hooks/useUserValidations";
+
 const publicMenuList = [
   { name: "SignIn", path: "/user/signin" },
   { name: "SignUp", path: "/user/signup" },
@@ -16,7 +18,19 @@ const adminMenuList = [
   { name: "Consumer msg", path: "/admin/consumer_messages" },
 ];
 
-export { publicMenuList, privateMenuList, adminMenuList };
+const MenuListPicker = () => {
+  const [checkAuth, isAdmin] = useUserValidations();
+
+  if (isAdmin()) {
+    return adminMenuList;
+  } else if (checkAuth()) {
+    return privateMenuList;
+  } else {
+    return publicMenuList;
+  }
+};
+
+export { MenuListPicker, adminMenuList, privateMenuList, publicMenuList };
 
 // {name:"SignIn",path:"/user/signin"}
 //["Profile", "WishList", "Orders", "SignOut"];

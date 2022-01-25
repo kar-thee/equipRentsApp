@@ -81,10 +81,7 @@ const ReachUs = () => {
           payload: { msg: response.data.msg, type: "error" },
         });
       }
-      console.log(response, " api res");
     }
-
-    //create appropriate api and link them
   };
 
   return (

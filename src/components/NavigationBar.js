@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Avatar,
@@ -17,16 +17,42 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 
 import { Link } from "react-router-dom";
-import { adminMenuList } from "../helpers/NavMenuList";
+
+import MenuListPicker, {
+  adminMenuList,
+  privateMenuList,
+  publicMenuList,
+} from "../helpers/NavMenuList";
+import useStateValFunc from "../hooks/useStateValFunc";
+import useUserValidations from "../hooks/useUserValidations";
 
 const NavigationBar = () => {
   const [state, setState] = useState({ anchorEl: "" });
+  const [navList, setNavList] = useState(null);
+  const [checkAuth, isAdmin] = useUserValidations();
+  const [{ token, role }] = useStateValFunc();
+  useEffect(() => {
+    const listFunc = () => {
+      if (isAdmin()) {
+        return adminMenuList;
+      } else if (checkAuth()) {
+        return privateMenuList;
+      } else {
+        return publicMenuList;
+      }
+    };
+    setNavList(listFunc());
+  }, [checkAuth, isAdmin, token, role]);
+
+  console.log(navList, " navList");
   const changeHandler = (ev) => {
     setState((prev) => ({ ...prev, anchorEl: ev.currentTarget }));
   };
+
   const handleClose = () => {
     setState((prev) => ({ ...prev, anchorEl: null }));
   };
+
   return (
     <>
       <AppBar sx={{ background: "#ec407a" }} position="static">
@@ -92,16 +118,17 @@ const NavigationBar = () => {
                 anchorEl={state.anchorEl}
                 onClose={() => handleClose()}
               >
-                {adminMenuList.map((item) => (
-                  <MenuItem
-                    key={item.name}
-                    sx={{ px: 4, color: "#ff4081" }}
-                    component={Link}
-                    to={item.path}
-                  >
-                    {item.name}
-                  </MenuItem>
-                ))}
+                {navList &&
+                  navList.map((item) => (
+                    <MenuItem
+                      key={item.name}
+                      sx={{ px: 4, color: "#ff4081" }}
+                      component={Link}
+                      to={item.path}
+                    >
+                      {item.name}
+                    </MenuItem>
+                  ))}
               </Menu>
             </Box>
           </Toolbar>

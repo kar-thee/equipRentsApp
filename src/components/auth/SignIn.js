@@ -6,9 +6,16 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import LoginIcon from "@mui/icons-material/Login";
+
+import SignInApi from "../../apis/SignInApi";
+import useDispatchFunc from "../../hooks/useDispatchFunc";
+import useStateValFunc from "../../hooks/useStateValFunc";
+import Loader from "../../helpers/Loader";
+import { useNavigate } from "react-router-dom";
+import useUserValidations from "../../hooks/useUserValidations";
 
 const SignIn = () => {
   const [state, setState] = useState({
@@ -18,6 +25,17 @@ const SignIn = () => {
 
   const [helper, setHelper] = useState({ email: "", password: "" });
 
+  const [{ loaderState }] = useStateValFunc();
+  const dispatch = useDispatchFunc();
+  const navigate = useNavigate();
+  const [checkAuth] = useUserValidations();
+
+  useEffect(() => {
+    if (checkAuth()) {
+      navigate("/shop");
+    }
+  }, [checkAuth, navigate]);
+
   const onChangeHandler = (ev) => {
     setState((prevState) => ({
       ...prevState,
@@ -25,7 +43,7 @@ const SignIn = () => {
     }));
   };
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = async () => {
     state.email
       ? setHelper((prev) => ({ ...prev, email: "" }))
       : setHelper((prev) => ({ ...prev, email: "Necessary Field" }));
@@ -35,8 +53,29 @@ const SignIn = () => {
       : setHelper((prev) => ({ ...prev, password: "Necessary Field" }));
 
     if (state.email && state.password) {
-      console.log(state);
-      //link api and loader here
+      const body = {
+        email: state.email,
+        password: state.password,
+      };
+      dispatch({ type: "startLoading" });
+      const response = await SignInApi(body);
+      dispatch({
+        type: "signin",
+        payload: { token: response.data.token, role: response.data.role },
+      });
+      dispatch({ type: "stopLoading" });
+      if (response.data.type === "success") {
+        dispatch({
+          type: "snackBar",
+          payload: { msg: response.data.msg, type: "success" },
+        });
+        navigate("/shop");
+      } else {
+        dispatch({
+          type: "snackBar",
+          payload: { msg: response.data.msg, type: "error" },
+        });
+      }
     }
   };
 
@@ -79,6 +118,7 @@ const SignIn = () => {
                 fullWidth
                 required
                 name="password"
+                type="password"
                 value={state.password}
                 onChange={(ev) => onChangeHandler(ev)}
                 helperText={helper.password}
@@ -98,6 +138,13 @@ const SignIn = () => {
           </Grid>
         </Container>
       </Box>
+      {loaderState ? (
+        <>
+          <Loader />
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 };

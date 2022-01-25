@@ -7,6 +7,9 @@ const ReducerFunc = (state, actionObj) => {
         role: actionObj.payload.role,
       };
     }
+    case "signOut": {
+      return { ...state, token: null, role: null };
+    }
     case "startLoading": {
       return { ...state, loaderState: true };
     }
