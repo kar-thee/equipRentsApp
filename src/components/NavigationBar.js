@@ -18,33 +18,16 @@ import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 
 import { Link } from "react-router-dom";
 
-import MenuListPicker, {
-  adminMenuList,
-  privateMenuList,
-  publicMenuList,
-} from "../helpers/NavMenuList";
-import useStateValFunc from "../hooks/useStateValFunc";
+import MenuListPicker from "../helpers/NavMenuList";
+
 import useUserValidations from "../hooks/useUserValidations";
+import useDispatchFunc from "../hooks/useDispatchFunc";
 
 const NavigationBar = () => {
   const [state, setState] = useState({ anchorEl: "" });
-  const [navList, setNavList] = useState(null);
-  const [checkAuth, isAdmin] = useUserValidations();
-  const [{ token, role }] = useStateValFunc();
-  useEffect(() => {
-    const listFunc = () => {
-      if (isAdmin()) {
-        return adminMenuList;
-      } else if (checkAuth()) {
-        return privateMenuList;
-      } else {
-        return publicMenuList;
-      }
-    };
-    setNavList(listFunc());
-  }, [checkAuth, isAdmin, token, role]);
+  const dispatch = useDispatchFunc();
+  const [checkAuth] = useUserValidations();
 
-  console.log(navList, " navList");
   const changeHandler = (ev) => {
     setState((prev) => ({ ...prev, anchorEl: ev.currentTarget }));
   };
@@ -118,17 +101,26 @@ const NavigationBar = () => {
                 anchorEl={state.anchorEl}
                 onClose={() => handleClose()}
               >
-                {navList &&
-                  navList.map((item) => (
-                    <MenuItem
-                      key={item.name}
-                      sx={{ px: 4, color: "#ff4081" }}
-                      component={Link}
-                      to={item.path}
-                    >
-                      {item.name}
-                    </MenuItem>
-                  ))}
+                {MenuListPicker().map((item) => (
+                  <MenuItem
+                    key={item.name}
+                    sx={{ px: 4, color: "#ff4081" }}
+                    component={Link}
+                    to={item.path}
+                  >
+                    {item.name}
+                  </MenuItem>
+                ))}
+                {checkAuth() ? (
+                  <MenuItem
+                    sx={{ px: 4, color: "#ff4081" }}
+                    onClick={() => dispatch({ type: "signOut" })}
+                  >
+                    SignOut
+                  </MenuItem>
+                ) : (
+                  ""
+                )}
               </Menu>
             </Box>
           </Toolbar>

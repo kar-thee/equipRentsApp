@@ -9,7 +9,6 @@ const privateMenuList = [
   { name: "Profile", path: "/user/profile" },
   { name: "WishList", path: "/user/wishlist" },
   { name: "Orders", path: "/user/orders" },
-  { name: "SignOut", path: "/user/signout" },
 ];
 
 const adminMenuList = [
@@ -20,17 +19,18 @@ const adminMenuList = [
 
 const MenuListPicker = () => {
   const [checkAuth, isAdmin] = useUserValidations();
-
+  let arr = "";
   if (isAdmin()) {
-    return adminMenuList;
+    arr = adminMenuList;
   } else if (checkAuth()) {
-    return privateMenuList;
+    arr = privateMenuList;
   } else {
-    return publicMenuList;
+    arr = publicMenuList;
   }
+  return arr;
 };
 
-export { MenuListPicker, adminMenuList, privateMenuList, publicMenuList };
+export default MenuListPicker;
 
 // {name:"SignIn",path:"/user/signin"}
 //["Profile", "WishList", "Orders", "SignOut"];

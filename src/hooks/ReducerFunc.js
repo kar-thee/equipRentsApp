@@ -8,7 +8,7 @@ const ReducerFunc = (state, actionObj) => {
       };
     }
     case "signOut": {
-      return { ...state, token: null, role: null };
+      return { ...state, token: "", role: "" };
     }
     case "startLoading": {
       return { ...state, loaderState: true };
