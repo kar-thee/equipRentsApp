@@ -13,9 +13,7 @@ import { Link } from "react-router-dom";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 import ContactFormApi from "../../apis/ContactFormApi";
-import Loader from "../../helpers/Loader";
 
-import useStateValFunc from "../../hooks/useStateValFunc";
 import useDispatchFunc from "../../hooks/useDispatchFunc";
 
 const ReachUs = () => {
@@ -28,7 +26,6 @@ const ReachUs = () => {
     helperQuery: "",
   };
   const [state, setState] = useState(initialValues);
-  const [{ loaderState }] = useStateValFunc();
   const dispatch = useDispatchFunc();
 
   const onChangeHandler = (ev) => {
@@ -217,14 +214,6 @@ const ReachUs = () => {
           </Box>
         </Container>
       </Box>
-
-      {loaderState ? (
-        <>
-          <Loader />
-        </>
-      ) : (
-        ""
-      )}
     </>
   );
 };

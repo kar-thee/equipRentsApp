@@ -12,8 +12,6 @@ import InputIcon from "@mui/icons-material/Input";
 
 import SignUpApi from "../../apis/SignUpApi";
 import useDispatchFunc from "../../hooks/useDispatchFunc";
-import useStateValFunc from "../../hooks/useStateValFunc";
-import Loader from "../../helpers/Loader";
 import { useNavigate } from "react-router-dom";
 import useUserValidations from "../../hooks/useUserValidations";
 
@@ -26,7 +24,6 @@ const SignUp = () => {
 
   const [helper, setHelper] = useState({ name: "", email: "", password: "" });
 
-  const [{ loaderState }] = useStateValFunc();
   const dispatch = useDispatchFunc();
   const navigate = useNavigate();
   const [checkAuth] = useUserValidations();
@@ -153,13 +150,6 @@ const SignUp = () => {
           </Grid>
         </Container>
       </Box>
-      {loaderState ? (
-        <>
-          <Loader />
-        </>
-      ) : (
-        ""
-      )}
     </>
   );
 };

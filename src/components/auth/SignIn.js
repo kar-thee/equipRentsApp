@@ -12,8 +12,6 @@ import LoginIcon from "@mui/icons-material/Login";
 
 import SignInApi from "../../apis/SignInApi";
 import useDispatchFunc from "../../hooks/useDispatchFunc";
-import useStateValFunc from "../../hooks/useStateValFunc";
-import Loader from "../../helpers/Loader";
 import { useNavigate } from "react-router-dom";
 import useUserValidations from "../../hooks/useUserValidations";
 
@@ -25,7 +23,6 @@ const SignIn = () => {
 
   const [helper, setHelper] = useState({ email: "", password: "" });
 
-  const [{ loaderState }] = useStateValFunc();
   const dispatch = useDispatchFunc();
   const navigate = useNavigate();
   const [checkAuth] = useUserValidations();
@@ -138,13 +135,6 @@ const SignIn = () => {
           </Grid>
         </Container>
       </Box>
-      {loaderState ? (
-        <>
-          <Loader />
-        </>
-      ) : (
-        ""
-      )}
     </>
   );
 };

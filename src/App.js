@@ -3,6 +3,12 @@ import { createTheme, CssBaseline } from "@mui/material";
 import React from "react";
 
 import { Routes, Route } from "react-router";
+import ProductCreate from "./components/admin/ProductCreate";
+import ProductDelete from "./components/admin/ProductDelete";
+import ProductGetAll from "./components/admin/ProductGetAll";
+import ProductGetOne from "./components/admin/ProductGetOne";
+import ProductMainPage from "./components/admin/ProductMainPage";
+import ProductUpdate from "./components/admin/ProductUpdate";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import Footer from "./components/Footer";
@@ -12,7 +18,9 @@ import Cart from "./components/pages/Cart";
 import LandingPage from "./components/pages/LandingPage";
 import ReachUs from "./components/pages/ReachUs";
 import Shop from "./components/pages/Shop";
+import Protected from "./components/Protected";
 import AppProvider from "./context/AppProvider";
+import Loader from "./helpers/Loader";
 import SnackBars from "./helpers/SnackBars";
 
 const theme = createTheme({
@@ -36,8 +44,68 @@ const App = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/user/signup" element={<SignUp />} />
             <Route path="/user/signin" element={<SignIn />} />
-            <Route path="*" element={<Shop />} />
+            <Route
+              path="/admin/crud/"
+              element={
+                <Protected redirect={<SignIn />}>
+                  <ProductMainPage />
+                </Protected>
+              }
+            >
+              <Route
+                path="*"
+                element={
+                  <Protected redirect={<SignIn />}>
+                    <ProductMainPage />
+                  </Protected>
+                }
+              />
+              <Route
+                path="productGetAll"
+                element={
+                  <Protected>
+                    <ProductGetAll />
+                  </Protected>
+                }
+              />
+              <Route
+                path="productGetOne/:id"
+                element={
+                  <Protected redirect={<SignIn />}>
+                    <ProductGetOne />
+                  </Protected>
+                }
+              />
+              <Route
+                path="productCreate"
+                element={
+                  <Protected redirect={<SignIn />}>
+                    <ProductCreate />
+                  </Protected>
+                }
+              />
+              <Route
+                path="productUpdate/:id"
+                element={
+                  <Protected redirect={<SignIn />}>
+                    <ProductUpdate />
+                  </Protected>
+                }
+              />
+              <Route
+                path="productDelete/:id"
+                element={
+                  <Protected redirect={<SignIn />}>
+                    <ProductDelete />
+                  </Protected>
+                }
+              />
+            </Route>
+            <Route path="*" element={<ReachUs />} />
           </Routes>
+          <>
+            <Loader />
+          </>
           <SnackBars />
           <Footer />
         </ThemeProvider>
