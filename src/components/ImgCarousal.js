@@ -1,4 +1,3 @@
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 
 import { Carousel } from "react-responsive-carousel";
