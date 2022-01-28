@@ -21,6 +21,7 @@ import useDispatchFunc from "../../hooks/useDispatchFunc";
 import useStateValFunc from "../../hooks/useStateValFunc";
 
 import { sectionArray, categoryArray } from "../../helpers/ProductCreateHelper";
+import { useNavigate } from "react-router-dom";
 
 const ProductCreate = () => {
   const initialValue = {
@@ -30,7 +31,6 @@ const ProductCreate = () => {
     price: "",
     section: "",
     category: "",
-    subCategory: "",
     qty: "",
   };
   const [state, setState] = useState(initialValue);
@@ -38,6 +38,7 @@ const ProductCreate = () => {
 
   const [{ token }] = useStateValFunc();
   const dispatch = useDispatchFunc();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (() => {
@@ -80,7 +81,7 @@ const ProductCreate = () => {
 
       //request PreSignedUrl from S3 via our server
       const body = {
-        section: "testing",
+        section: `${state.section}/${state.category}`,
         name: state.uploadImg.name,
       };
       const response = await RequestSignedUrlApi(body, token);
@@ -103,12 +104,13 @@ const ProductCreate = () => {
           //img url is present in the url we got in first step
           const receievedUrl = uploadUrl.split("?")[0];
           const productBody = {
-            productUrl: receievedUrl,
-            productName: state.uploadImg.name,
-            section: "Electronics",
-            category: "recreation",
-            price: 50000,
-            desc: "You cant buy this easily!!!",
+            url: receievedUrl,
+            name: state.name,
+            section: state.section,
+            category: state.category,
+            price: state.price,
+            desc: state.desc,
+            qty: state.qty,
           };
           const productRes = await CreateProductApi(productBody, token);
 
@@ -118,7 +120,8 @@ const ProductCreate = () => {
               type: "snackBar",
               payload: { msg: productRes.data.msg, type: "success" },
             });
-            console.log(productRes.data.productdata, " received productData");
+            // product created by now....
+            navigate("/admin/crud");
           }
           //if createProductApi is failed
           else {
@@ -287,7 +290,7 @@ const ProductCreate = () => {
                   Product Qty :
                 </Typography>
                 <Slider
-                  aria-label="Custom marks"
+                  aria-label="product qty"
                   defaultValue={1}
                   min={1}
                   max={100}

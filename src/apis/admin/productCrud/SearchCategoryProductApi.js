@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const CreateProductApi = async (body, token) => {
+const SearchCategoryProductApi = async (categoryValue, token) => {
   try {
     const response = await axios.post(
-      process.env.REACT_APP_PRODUCTCREATEAPI,
-      body,
+      process.env.REACT_APP_PRODUCTSEARCHCATEGORY,
+      categoryValue,
       {
         headers: {
           authorization: `BEARER ${token}`,
@@ -18,4 +18,4 @@ const CreateProductApi = async (body, token) => {
   }
 };
 
-export default CreateProductApi;
+export default SearchCategoryProductApi;

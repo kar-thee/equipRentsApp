@@ -28,7 +28,15 @@ const ProductMainPage = () => {
               component={Link}
               to="/admin/crud/productGetAll"
             >
-              GetAll Products
+              Product Listing
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ background: "#ff4081", my: 1 }}
+              component={Link}
+              to="/admin/crud/productFind"
+            >
+              Find Product
             </Button>
           </Stack>
         </Box>

@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const CreateProductApi = async (body, token) => {
+const UpdateProductApi = async (id, token) => {
   try {
-    const response = await axios.post(
-      process.env.REACT_APP_PRODUCTCREATEAPI,
-      body,
+    const response = await axios.get(
+      `${process.env.REACT_APP_PRODUCTUPDATE}/${id}`,
       {
         headers: {
           authorization: `BEARER ${token}`,
@@ -18,4 +17,4 @@ const CreateProductApi = async (body, token) => {
   }
 };
 
-export default CreateProductApi;
+export default UpdateProductApi;

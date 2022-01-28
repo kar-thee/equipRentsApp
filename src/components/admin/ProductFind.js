@@ -19,9 +19,9 @@ import useStateValFunc from "../../hooks/useStateValFunc";
 
 import { sectionArray, categoryArray } from "../../helpers/ProductCreateHelper";
 import SearchCategoryProductApi from "../../apis/admin/productCrud/SearchCategoryProductApi";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const ProductUpdate = () => {
+const ProductFind = () => {
   const initialValue = {
     section: "",
     category: "",
@@ -32,6 +32,7 @@ const ProductUpdate = () => {
 
   const [{ token }] = useStateValFunc();
   const dispatch = useDispatchFunc();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (() => {
@@ -96,7 +97,7 @@ const ProductUpdate = () => {
           sx={{ py: 2, my: 2, border: "4px solid pink" }}
         >
           <Typography variant="h6" sx={{ color: "#ff4081" }} align="center">
-            Update Product
+            Find Product
           </Typography>
           <Grid container sx={{ justifyContent: "center", my: 2 }}>
             {/* section */}
@@ -180,8 +181,9 @@ const ProductUpdate = () => {
                     <CardActions>
                       <Button
                         size="small"
-                        component={Link}
-                        to={`productGetOne/${_id}`}
+                        onClick={() =>
+                          navigate(`/admin/crud/productGetOne/${_id}`)
+                        }
                       >
                         View
                       </Button>
@@ -197,4 +199,4 @@ const ProductUpdate = () => {
   );
 };
 
-export default ProductUpdate;
+export default ProductFind;

@@ -4,7 +4,7 @@ import React from "react";
 
 import { Routes, Route } from "react-router";
 import ProductCreate from "./components/admin/ProductCreate";
-import ProductDelete from "./components/admin/ProductDelete";
+import ProductFind from "./components/admin/ProductFind";
 import ProductGetAll from "./components/admin/ProductGetAll";
 import ProductGetOne from "./components/admin/ProductGetOne";
 import ProductMainPage from "./components/admin/ProductMainPage";
@@ -44,6 +44,7 @@ const App = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/user/signup" element={<SignUp />} />
             <Route path="/user/signin" element={<SignIn />} />
+
             <Route
               path="/admin/crud/"
               element={
@@ -53,10 +54,10 @@ const App = () => {
               }
             >
               <Route
-                path="*"
+                path=""
                 element={
                   <Protected redirect={<SignIn />}>
-                    <ProductMainPage />
+                    <ProductGetAll />
                   </Protected>
                 }
               />
@@ -85,7 +86,7 @@ const App = () => {
                 }
               />
               <Route
-                path="productUpdate/:id"
+                path="productUpdate"
                 element={
                   <Protected redirect={<SignIn />}>
                     <ProductUpdate />
@@ -93,10 +94,10 @@ const App = () => {
                 }
               />
               <Route
-                path="productDelete/:id"
+                path="productFind"
                 element={
                   <Protected redirect={<SignIn />}>
-                    <ProductDelete />
+                    <ProductFind />
                   </Protected>
                 }
               />
