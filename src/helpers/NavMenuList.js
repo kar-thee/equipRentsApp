@@ -15,8 +15,8 @@ const adminMenuList = [
   { name: "Rental Inventory mgmt", path: "/admin/allInfo" },
   { name: "Product CRUD", path: "/admin/crud" },
   {
-    name: "Consumer msgs from contactUsForm",
-    path: "/admin/consumer_messages",
+    name: "Query Ticket Mgmt",
+    path: "/admin/msgAll",
   },
 ];
 

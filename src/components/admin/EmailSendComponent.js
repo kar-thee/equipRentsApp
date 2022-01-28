@@ -30,9 +30,8 @@ const EmailSendComponent = ({
   };
 
   const handleSubmit = async () => {
-    console.log(state, "state");
     dispatch({ type: "startLoading" });
-    const data = { state, recipientEmail };
+    const data = { mailContent: state, recipientEmail };
     const response = await SendEmailApi(data, token);
 
     dispatch({ type: "stopLoading" });
@@ -47,6 +46,7 @@ const EmailSendComponent = ({
         payload: { type: "error", msg: response.data.msg },
       });
     }
+    DialogToggler();
   };
 
   return (

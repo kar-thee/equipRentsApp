@@ -172,6 +172,7 @@ const ProductGetOne = () => {
                     valueLabelDisplay="auto"
                     name="qty"
                     onChange={(ev) => onChangeHandler(ev)}
+                    disabled={disableState ? true : false}
                   />
                 )}
               </Stack>
