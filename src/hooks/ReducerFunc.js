@@ -8,7 +8,13 @@ const ReducerFunc = (state, actionObj) => {
       };
     }
     case "signOut": {
-      return { ...state, token: "", role: "" };
+      return {
+        token: "",
+        role: "",
+        loaderState: false,
+        snackBarType: "error",
+        snackBarMsg: "",
+      };
     }
     case "startLoading": {
       return { ...state, loaderState: true };

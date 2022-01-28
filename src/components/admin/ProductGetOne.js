@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import GetOneProductApi from "../../apis/admin/productCrud/GetOneProductApi";
 
@@ -18,6 +18,7 @@ import useStateValFunc from "../../hooks/useStateValFunc";
 
 import EditIcon from "@mui/icons-material/Edit";
 import CancelIcon from "@mui/icons-material/Cancel";
+import UpdateProductApi from "../../apis/admin/productCrud/UpdateProductApi";
 
 const ProductGetOne = () => {
   const initialValue = {
@@ -30,6 +31,7 @@ const ProductGetOne = () => {
   const [disableState, setDisableState] = useState(true);
 
   const params = useParams();
+  const navigate = useNavigate();
   const id = params.id;
   const [{ token }] = useStateValFunc();
   const dispatch = useDispatchFunc();
@@ -61,8 +63,27 @@ const ProductGetOne = () => {
     }));
   };
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = async () => {
     //use a state to check whether edit button is pressed or else it remains disabled
+    if (disableState) {
+      return;
+    }
+    dispatch({ type: "startLoading" });
+    const response = await UpdateProductApi(id, state, token);
+    dispatch({ type: "stopLoading" });
+    if (response.data.type === "success") {
+      dispatch({
+        type: "snackBar",
+        payload: { msg: response.data.msg, type: "success" },
+      });
+      navigate(`/admin/crud/productGetAll`);
+    } else {
+      dispatch({
+        type: "snackBar",
+        payload: { msg: response.data.msg, type: "error" },
+      });
+      navigate(`/admin/crud/productGetAll`);
+    }
   };
   return (
     <>
@@ -143,15 +164,14 @@ const ProductGetOne = () => {
                 </Typography>
                 {state.qty && (
                   <Slider
-                    get-aria-label="product qty"
-                    defaultValue={+state.qty}
+                    aria-label="product qty"
+                    defaultValue={1}
                     min={1}
                     max={100}
                     step={1}
                     valueLabelDisplay="auto"
                     name="qty"
                     onChange={(ev) => onChangeHandler(ev)}
-                    disabled={disableState ? true : false}
                   />
                 )}
               </Stack>

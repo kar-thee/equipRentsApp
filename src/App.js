@@ -3,12 +3,13 @@ import { createTheme, CssBaseline } from "@mui/material";
 import React from "react";
 
 import { Routes, Route } from "react-router";
+import MessageGetAll from "./components/admin/MessageGetAll";
+import MessageGetOne from "./components/admin/MessageGetOne";
 import ProductCreate from "./components/admin/ProductCreate";
 import ProductFind from "./components/admin/ProductFind";
 import ProductGetAll from "./components/admin/ProductGetAll";
 import ProductGetOne from "./components/admin/ProductGetOne";
 import ProductMainPage from "./components/admin/ProductMainPage";
-import ProductUpdate from "./components/admin/ProductUpdate";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import Footer from "./components/Footer";
@@ -44,6 +45,22 @@ const App = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/user/signup" element={<SignUp />} />
             <Route path="/user/signin" element={<SignIn />} />
+            <Route
+              path="/admin/msgAll"
+              element={
+                <Protected redirect={<SignIn />}>
+                  <MessageGetAll />
+                </Protected>
+              }
+            />
+            <Route
+              path="/admin/msgOne/:id"
+              element={
+                <Protected redirect={<SignIn />}>
+                  <MessageGetOne />
+                </Protected>
+              }
+            />
 
             <Route
               path="/admin/crud/"
@@ -82,14 +99,6 @@ const App = () => {
                 element={
                   <Protected redirect={<SignIn />}>
                     <ProductCreate />
-                  </Protected>
-                }
-              />
-              <Route
-                path="productUpdate"
-                element={
-                  <Protected redirect={<SignIn />}>
-                    <ProductUpdate />
                   </Protected>
                 }
               />
