@@ -11,6 +11,7 @@ const CreateProductApi = async (body, token) => {
         },
       }
     );
+    console.log(response, " res from createProduct");
     return response;
   } catch (e) {
     return e.response;
