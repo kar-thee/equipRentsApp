@@ -6,7 +6,7 @@ const Shop = () => {
     <>
       <Typography>Here Loader</Typography>
       <img
-        src="https://equiprents-awsbucket.s3.ap-south-1.amazonaws.com/construction/fourthtime.jpg"
+        src="https://cdn.mos.cms.futurecdn.net/To3Lgu8wCpRFvfdEGt5w5g-970-80.jpg.webp"
         alt="ggt"
       />
     </>

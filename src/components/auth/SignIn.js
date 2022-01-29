@@ -66,7 +66,7 @@ const SignIn = () => {
           type: "snackBar",
           payload: { msg: response.data.msg, type: "success" },
         });
-        navigate("/shop");
+        navigate("/store");
       } else {
         dispatch({
           type: "snackBar",
