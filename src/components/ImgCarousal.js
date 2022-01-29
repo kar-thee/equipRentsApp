@@ -9,7 +9,7 @@ const ImgCarousal = () => {
       <Carousel autoPlay infiniteLoop>
         {ProductSectionArray.map(({ title, img }) => (
           <div key={title}>
-            <img alt={title} src={img} />
+            <img alt={title} src={img} loading="lazy" />
             <p className="legend">{title}</p>
           </div>
         ))}

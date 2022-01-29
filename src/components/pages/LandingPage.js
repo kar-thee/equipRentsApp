@@ -80,6 +80,7 @@ const LandingPage = () => {
                   </CardContent>
                   <CardMedia
                     component="img"
+                    loading="lazy"
                     height="140"
                     sx={{ objectFit: "contain" }}
                     image={img}
