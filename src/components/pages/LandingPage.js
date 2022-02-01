@@ -17,6 +17,8 @@ import { Link } from "react-router-dom";
 
 import ProductSectionArray from "../../helpers/Categories";
 
+import LazyLoad from "react-lazyload";
+
 const LandingPage = () => {
   return (
     <>
@@ -78,14 +80,16 @@ const LandingPage = () => {
                   <CardContent>
                     <Typography variant="body1">{title}</Typography>
                   </CardContent>
-                  <CardMedia
-                    component="img"
-                    loading="lazy"
-                    height="140"
-                    sx={{ objectFit: "contain" }}
-                    image={img}
-                    alt={`Browse ${title} Section`}
-                  />
+                  <LazyLoad height={140}>
+                    <CardMedia
+                      component="img"
+                      loading="lazy"
+                      height="140"
+                      sx={{ objectFit: "contain" }}
+                      image={img}
+                      alt={`Browse ${title} Section`}
+                    />
+                  </LazyLoad>
                   <CardActions>
                     <Button size="small" component={Link} to={href}>
                       Explore

@@ -17,7 +17,9 @@ import NavigationBar from "./components/NavigationBar";
 import Cart from "./components/pages/Cart";
 
 import LandingPage from "./components/pages/LandingPage";
+import ProductInfo from "./components/pages/ProductInfo";
 import ReachUs from "./components/pages/ReachUs";
+import SectionsStore from "./components/pages/SectionsStore";
 import Shop from "./components/pages/Shop";
 import Protected from "./components/Protected";
 import AppProvider from "./context/AppProvider";
@@ -42,6 +44,8 @@ const App = () => {
             <Route path="/" element={<LandingPage />} />
             <Route path="/contact" element={<ReachUs />} />
             <Route path="/store" element={<Shop />} />
+            <Route path="/store/:section" element={<SectionsStore />} />
+            <Route path="/store/product/:id" element={<ProductInfo />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/user/signup" element={<SignUp />} />
             <Route path="/user/signin" element={<SignIn />} />

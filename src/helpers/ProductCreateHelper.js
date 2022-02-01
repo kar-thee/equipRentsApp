@@ -84,8 +84,8 @@ const categoryArray = [
       "Mens Wear",
       "Womens Wear",
       "Wedding Attire",
+      "Adornments",
       "Accessories",
-      "Earrings",
       "Covid-19 Hospital supplies",
     ],
     kidsAndBabies: [
