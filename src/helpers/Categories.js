@@ -36,22 +36,22 @@ const HeroSection = [
   {
     title: "Film and photography",
     img: FilmPhotoImg,
-    href: "/store/photography",
+    href: "/store/filmAndPhotography",
   },
   {
     title: "wfh essentials & others",
     img: WfhImg || NAImg,
-    href: "/store/wfh&others",
+    href: "/store/wfhEssentialsAndOthers",
   },
   {
     title: "Sports & Fitness",
     img: SportsAndFitnessImg || NAImg,
-    href: "/store/sports&fitness",
+    href: "/store/sportsAndFitness",
   },
   {
     title: "Party & Events",
     img: PartyAndEventsImg || NAImg,
-    href: "/store/party&events",
+    href: "/store/partyAndEvents",
   },
   {
     title: "Furniture ",
@@ -66,27 +66,27 @@ const HeroSection = [
   {
     title: "Clothing & Accessories",
     img: ClothingImg || NAImg,
-    href: "/store/clothing&accessories",
+    href: "/store/clothingAndAccessories",
   },
   {
     title: "Kids and Babies",
     img: kidsAndBabiesImg || NAImg,
-    href: "/store/kids&babies",
+    href: "/store/kidsAndBabies",
   },
   {
     title: "OutDoor",
     img: OutdoorImg || NAImg,
-    href: "/store/outdoor_equipments",
+    href: "/store/outDoor",
   },
   {
     title: "Construction",
     img: ConstructionImg || NAImg,
-    href: "/store/construction_equipments",
+    href: "/store/construction",
   },
   {
     title: "Vehicles",
     img: VehiclesImg || NAImg,
-    href: "/store/vehicle_rent",
+    href: "/store/vehicles",
   },
 ];
 
