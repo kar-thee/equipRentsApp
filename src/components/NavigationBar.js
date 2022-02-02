@@ -22,11 +22,13 @@ import MenuListPicker from "../helpers/NavMenuList";
 
 import useUserValidations from "../hooks/useUserValidations";
 import useDispatchFunc from "../hooks/useDispatchFunc";
+import useStateValFunc from "../hooks/useStateValFunc";
 
 const NavigationBar = () => {
   const [state, setState] = useState({ anchorEl: "" });
   const dispatch = useDispatchFunc();
   const [checkAuth] = useUserValidations();
+  const [{ cart }] = useStateValFunc();
 
   const changeHandler = (ev) => {
     setState((prev) => ({ ...prev, anchorEl: ev.currentTarget }));
@@ -59,7 +61,7 @@ const NavigationBar = () => {
             <Box sx={{ mr: { xs: 2, md: 3 } }} component={Link} to="/cart">
               <Tooltip title="Cart">
                 <IconButton color="secondary">
-                  <Badge badgeContent={1} color="primary">
+                  <Badge badgeContent={cart.length} color="primary">
                     <ShoppingCartIcon sx={{ color: "#fff" }} />
                   </Badge>
                 </IconButton>

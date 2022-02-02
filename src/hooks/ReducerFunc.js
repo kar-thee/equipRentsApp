@@ -30,6 +30,22 @@ const ReducerFunc = (state, actionObj) => {
       };
     }
 
+    case "ADDTOCART": {
+      return {
+        ...state,
+        cart: [...state.cart, actionObj.payload.idObj],
+      };
+    }
+    case "REMOVEFROMCART": {
+      const filterArr = state.cart.filter((cartIdObj) =>
+        cartIdObj.id === actionObj.payload.id ? "" : cartIdObj
+      );
+      return {
+        ...state,
+        cart: [...filterArr],
+      };
+    }
+
     default:
       return state;
   }

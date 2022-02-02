@@ -4,6 +4,7 @@ const initialValues = {
   loaderState: false,
   snackBarType: "error",
   snackBarMsg: "",
+  cart: [],
 };
 
 export default initialValues;
