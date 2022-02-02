@@ -20,7 +20,7 @@ import QtyPicker from "../public/QtyPicker";
 
 const ProductInfo = () => {
   const [productState, setProductState] = useState();
-  const [qtySelectedState, setQuantityStateSelected] = useState();
+  const [qtySelectedState, setQuantityStateSelected] = useState("");
 
   const params = useParams();
   const { id } = params;
@@ -54,8 +54,9 @@ const ProductInfo = () => {
       imgUrl: productState.url,
       name: productState.name,
       price: productState.price,
-      qtyNeeded: 2,
+      qtyNeeded: qtySelectedState,
       section: productState.section,
+      category: productState.category,
     };
     dispatch({
       type: "ADDTOCART",
@@ -109,23 +110,42 @@ const ProductInfo = () => {
                       </CardContent>
                       <Divider />
                       <CardContent>
-                        <QtyPicker
-                          stockMax={productState.qty}
-                          selectedQty={qtySelectedState}
-                          qtySelectorFunc={qtySelectorFunc}
-                        />
+                        {cartCheck ? (
+                          ""
+                        ) : (
+                          <QtyPicker
+                            stockMax={productState.qty}
+                            selectedQty={qtySelectedState}
+                            qtySelectorFunc={qtySelectorFunc}
+                          />
+                        )}
                       </CardContent>
                       <CardActions sx={{ p: 3, my: 2 }}>
-                        <Button
-                          variant="contained"
-                          fullWidth
-                          sx={{ background: "#ff4081" }}
-                          onClick={() => {
-                            cartCheck ? cartRemoverFunc() : cartAdderFunc();
-                          }}
-                        >
-                          {cartCheck ? "Remove from cart" : "Add to Cart"}
-                        </Button>
+                        {/* CART Add/Remove Btns */}
+                        {cartCheck ? (
+                          <Button
+                            variant="contained"
+                            fullWidth
+                            sx={{ background: "#ff4081" }}
+                            onClick={() => {
+                              cartRemoverFunc();
+                            }}
+                          >
+                            Remove from cart
+                          </Button>
+                        ) : (
+                          <Button
+                            variant="contained"
+                            fullWidth
+                            disabled={qtySelectedState ? false : true}
+                            sx={{ background: "#ff4081" }}
+                            onClick={() => {
+                              cartAdderFunc();
+                            }}
+                          >
+                            Add to Cart
+                          </Button>
+                        )}
                       </CardActions>
                     </Card>
                   </Box>

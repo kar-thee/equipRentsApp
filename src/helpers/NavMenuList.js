@@ -7,7 +7,6 @@ const publicMenuList = [
 
 const privateMenuList = [
   { name: "Profile", path: "/user/profile" },
-  { name: "WishList", path: "/user/wishlist" },
   { name: "Orders", path: "/user/orders" },
 ];
 
