@@ -21,6 +21,8 @@ import ProductInfo from "./components/pages/ProductInfo";
 import ReachUs from "./components/pages/ReachUs";
 import SectionsStore from "./components/pages/SectionsStore";
 import Shop from "./components/pages/Shop";
+import Orders from "./components/private/Orders";
+import Profile from "./components/private/Profile";
 import Protected from "./components/Protected";
 import AppProvider from "./context/AppProvider";
 import Loader from "./helpers/Loader";
@@ -47,8 +49,27 @@ const App = () => {
             <Route path="/store/:sectionName" element={<SectionsStore />} />
             <Route path="/store/product/:id" element={<ProductInfo />} />
             <Route path="/cart" element={<Cart />} />
+
             <Route path="/user/signup" element={<SignUp />} />
             <Route path="/user/signin" element={<SignIn />} />
+
+            <Route
+              path="/user/profile"
+              element={
+                <Protected redirect={<SignIn />}>
+                  <Profile />
+                </Protected>
+              }
+            />
+            <Route
+              path="/user/orders"
+              element={
+                <Protected redirect={<SignIn />}>
+                  <Orders />
+                </Protected>
+              }
+            />
+
             <Route
               path="/admin/msgAll"
               element={
