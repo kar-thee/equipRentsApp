@@ -1,3 +1,5 @@
+import initialValues from "./InititalValues";
+
 const ReducerFunc = (state, actionObj) => {
   switch (actionObj.type) {
     case "signin": {
@@ -8,13 +10,7 @@ const ReducerFunc = (state, actionObj) => {
       };
     }
     case "signOut": {
-      return {
-        token: "",
-        role: "",
-        loaderState: false,
-        snackBarType: "error",
-        snackBarMsg: "",
-      };
+      return initialValues;
     }
     case "startLoading": {
       return { ...state, loaderState: true };
@@ -43,6 +39,29 @@ const ReducerFunc = (state, actionObj) => {
       return {
         ...state,
         cart: [...filterArr],
+      };
+    }
+
+    case "addEmail": {
+      return { ...state, email: actionObj.payload.email };
+    }
+    case "clearEmail": {
+      return { ...state, email: "" };
+    }
+
+    case "updateOrderAmount": {
+      return { ...state, orderTotalAmount: actionObj.payload };
+    }
+    case "clearOrderAmount": {
+      return { ...state, orderTotalAmount: null };
+    }
+
+    case "paymentSuccess": {
+      return {
+        ...state,
+        cart: [],
+        email: "",
+        orderTotalAmount: null,
       };
     }
 
