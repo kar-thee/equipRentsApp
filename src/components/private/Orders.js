@@ -15,7 +15,7 @@ const Orders = () => {
       dispatch({ type: "startLoading" });
       const response = await GetOrdersApi(token);
       dispatch({ type: "stopLoading" });
-      console.log(response, " response orders");
+
       if (response.data.type === "success") {
         setState((prev) => ({
           ...prev,

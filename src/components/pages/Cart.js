@@ -109,7 +109,7 @@ const Cart = () => {
           razorpay_signature: response.razorpay_signature,
           orderId,
         };
-        console.log(paymentVerifyData, " paymentVerifyData");
+
         const paymentVerificationResponse = await VerifyPaymentApi(
           paymentVerifyData
         );
@@ -122,7 +122,7 @@ const Cart = () => {
               msg: paymentVerificationResponse.data.msg,
             },
           });
-          console.log("Payment successful");
+
           //need to clear cart,orderid,email and navigate to home or payment successful page
           dispatch({ type: "paymentSuccess" });
           navigate("/user/orders");

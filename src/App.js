@@ -11,6 +11,7 @@ import ProductFind from "./components/admin/ProductFind";
 import ProductGetAll from "./components/admin/ProductGetAll";
 import ProductGetOne from "./components/admin/ProductGetOne";
 import ProductMainPage from "./components/admin/ProductMainPage";
+import AdminProtected from "./components/AdminProtected";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import Footer from "./components/Footer";
@@ -73,34 +74,34 @@ const App = () => {
             <Route
               path="/admin/ordersMgmt"
               element={
-                <Protected redirect={<SignIn />}>
+                <AdminProtected redirect={<SignIn />}>
                   <OrderTable />
-                </Protected>
+                </AdminProtected>
               }
             />
             <Route
               path="/admin/msgAll"
               element={
-                <Protected redirect={<SignIn />}>
+                <AdminProtected redirect={<SignIn />}>
                   <MessageGetAll />
-                </Protected>
+                </AdminProtected>
               }
             />
             <Route
               path="/admin/msgOne/:id"
               element={
-                <Protected redirect={<SignIn />}>
+                <AdminProtected redirect={<SignIn />}>
                   <MessageGetOne />
-                </Protected>
+                </AdminProtected>
               }
             />
 
             <Route
               path="/admin/crud/"
               element={
-                <Protected redirect={<SignIn />}>
+                <AdminProtected redirect={<SignIn />}>
                   <ProductMainPage />
-                </Protected>
+                </AdminProtected>
               }
             >
               <Route
