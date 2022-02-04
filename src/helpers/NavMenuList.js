@@ -11,7 +11,7 @@ const privateMenuList = [
 ];
 
 const adminMenuList = [
-  { name: "Rental Inventory mgmt", path: "/admin/allInfo" },
+  { name: "Orders Mgmt", path: "/admin/ordersMgmt" },
   { name: "Product CRUD", path: "/admin/crud" },
   {
     name: "Query Ticket Mgmt",

@@ -5,6 +5,7 @@ import React from "react";
 import { Routes, Route } from "react-router";
 import MessageGetAll from "./components/admin/MessageGetAll";
 import MessageGetOne from "./components/admin/MessageGetOne";
+import OrderTable from "./components/admin/order_mgmt/OrderTable";
 import ProductCreate from "./components/admin/ProductCreate";
 import ProductFind from "./components/admin/ProductFind";
 import ProductGetAll from "./components/admin/ProductGetAll";
@@ -69,7 +70,14 @@ const App = () => {
                 </Protected>
               }
             />
-
+            <Route
+              path="/admin/ordersMgmt"
+              element={
+                <Protected redirect={<SignIn />}>
+                  <OrderTable />
+                </Protected>
+              }
+            />
             <Route
               path="/admin/msgAll"
               element={

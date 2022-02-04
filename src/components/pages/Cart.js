@@ -302,7 +302,9 @@ const Cart = () => {
                       name="email"
                       value={state.email}
                       onChange={(ev) => changeHandler(ev)}
-                      helperText={state.emailHelperText}
+                      helperText={
+                        state.emailHelperText || "demo eg : karthee@karthee.com"
+                      }
                       error={state.emailHelperText ? true : false}
                     />
                   </Box>
