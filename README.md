@@ -65,5 +65,5 @@ a frontend application using Reactjs (part of full Stack MERN Application - equi
 <h6>Since Store has 325+ products, added React-Lazy Loading of Images and components for increasing Efficiency of App (after visiting store page, open devTools and go to network tab and watch how each and every image url request is made for every mouse scrolling near that component.)</h6>
 <br>
 <br>
-<code>If you need my .env file for backend API endpoints for cloning this repo, contact me via Email. Happy to Help/.</code>
-<br>
+
+
