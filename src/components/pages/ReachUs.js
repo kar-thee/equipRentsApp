@@ -91,7 +91,7 @@ const ReachUs = () => {
           m: { xs: 0, md: 0 },
           my: { xs: 0, sm: 0 },
           py: { xs: 4, md: 0 },
-          height: "25rem",
+          height: "30rem",
           alignItems: { md: "center" },
         }}
       >
@@ -107,9 +107,12 @@ const ReachUs = () => {
         >
           <Typography variant="h6">
             EquipRents is One-Stop Shop where You can Rent Equipments Online.
-            Our Product Listings are huge, You should definitely check it out.
-            You can Rent Equipments and make Payment Online via RazorPay Payment
-            Gateway
+            Our Product Listings are huge{" "}
+            <Box sx={{ color: "#f48fb1", fontSize: "1rem" }} component="span">
+              (325+ products in 12 sections and different categories)
+            </Box>
+            , You should definitely check it out. You can Rent Equipments and
+            make Payment Online via RazorPay Payment Gateway
           </Typography>
           <Box
             sx={{

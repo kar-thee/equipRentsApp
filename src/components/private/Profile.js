@@ -11,7 +11,9 @@ const Profile = () => {
 
   useEffect(() => {
     (async () => {
+      dispatch({ type: "startLoading" });
       const response = await GetProfileApi(token);
+      dispatch({ type: "stopLoading" });
       if (response.data.type === "success") {
         setState((prev) => ({
           ...prev,
@@ -38,9 +40,11 @@ const Profile = () => {
   if (state.notFound) {
     return (
       <>
-        <Typography variant="h5" sx={{ p: 5, my: 5 }}>
-          User not Found
-        </Typography>
+        <Box sx={{ p: { md: 3 }, my: 4, color: "#ff4081" }}>
+          <Typography variant="h5" sx={{ p: 5, my: 5 }}>
+            User not Found
+          </Typography>
+        </Box>
       </>
     );
   }

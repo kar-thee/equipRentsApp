@@ -196,6 +196,25 @@ const Cart = () => {
     setState((prev) => ({ ...prev, [ev.target.name]: ev.target.value }));
   };
 
+  if (cart.length === 0) {
+    return (
+      <>
+        <Container
+          maxWidth="md"
+          sx={{ p: { xs: 1, md: 5 }, my: 5, border: "4px solid #ec407a" }}
+        >
+          <Box sx={{ p: { md: 3 }, my: 4, color: "#ff4081" }}>
+            <Typography variant="h5" sx={{ p: 2, my: 2 }} align="center">
+              Empty cart
+            </Typography>
+            <Typography variant="h5" sx={{ p: 5, my: 5 }} align="center">
+              Total Products in Cart : {cart.length}
+            </Typography>
+          </Box>
+        </Container>
+      </>
+    );
+  }
   return (
     <>
       <Container maxWidth="xl" sx={{ py: 1, my: 2 }}>
