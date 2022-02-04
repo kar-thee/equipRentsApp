@@ -62,5 +62,8 @@ a frontend application using Reactjs (part of full Stack MERN Application - equi
 <h6>All Product Images are stored in Amazon S3 Bucket (login as ADMIN and create new product to experience AMAZON-S3 integration)</h6>
 <h6>Integrated RazorPay Payment-gateway with Test Mode, Visit App and place an order to experience RazorPay-PaymentGateway Integration</h6>
 <h6>App built with mui-V5 (materialUI V5) components and also added Carousel in LandingPage using react-responsive-carousel library</h6>
+<h6>Since Store has 325+ products, added React-Lazy Loading of Images and components for increasing Efficiency of App (after visiting store page, open devTools and go to network tab and watch how each and every image url request is made for every mouse scrolling near that component.)</h6>
 <br>
+<br>
+If you need my .env file for backend API endpoints for cloning this repo, contact me via Email. Happy to Help/.
 <br>
