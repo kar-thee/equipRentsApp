@@ -64,6 +64,6 @@ a frontend application using Reactjs (part of full Stack MERN Application - equi
 <h6>App built with mui-V5 (materialUI V5) components and also added Carousel in LandingPage using react-responsive-carousel library</h6>
 <h6>Since Store has 325+ products, added React-Lazy Loading of Images and components for increasing Efficiency of App (after visiting store page, open devTools and go to network tab and watch how each and every image url request is made for every mouse scrolling near that component.)</h6>
 <br>
-<br>
+
 
 
