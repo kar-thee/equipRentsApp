@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# equipRentsApp-client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+a frontend application using Reactjs (part of full Stack MERN Application - equipRentsApp)
+<br><br>
+# App Link
+<h4> https://equiprents-app.netlify.app/ </h4>
+<br>
 
-## Available Scripts
+### User Credentials for App-Demo
+<h4>ADMIN</h4>
+<h6>email: admin@equiprents.com</h6>
+<h6>password: admin</h6>
 
-In the project directory, you can run:
+<h4>CUSTOMER</h4>
+<h6>email: karthee@karthee.com</h6>
+<h6>password: password</h6>
+<br>
 
-### `npm start`
+### Backend Repo Link
+<h6>Express(NODEjs) server with mongodb - https://github.com/kar-thee/equipRents-server</h6>
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## App Features
+<h6>Landing Page</h6>
+<h6>Store</h6>
+<h6>Cart</h6>
+<h6>ContactUs page</h6>
+<h6>Account Mgmt pages</h6>
+<br>
 
-### `npm test`
+## EquipRentsApp - everything to know
+<h5>This is a Equipment lending/renting E-commerce Platform developed using MERN stack</h5>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h3>All User Interactions :</h3>
 
-### `npm run build`
+<h4>Regular User (user without loggingIn)</h4>
+<h6>This kind of User can access Store and even can make purchase without registering UserInfo</h6>
+<h6>All purchases made by this User, can be accessed by them later in the app by signingUp with same emailId used for Purchase before.</h6>
+<h6>This user can send messages to the AppOwner/Admin via ContactUs Page</h6>
+<br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<h4>Registered User (user after loggedIn)</h4>
+<h6>This User can get access to regular Store and also Personal Account Management pages (Profile and Orders) </h6>
+<h6>Profile Page - Displays Personal Info according to the user</h6>
+<h6>Orders Page - Displays All the Orders/Purchase made by the user with the same Email Id used for LoggingIn</h6>
+<h6>This user can also send messages to the AppOwner/Admin via ContactUs Page</h6>
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h3>Admin User (use the admin Credentials provided above)</h3>
+<h6>This User has Predominant access to this Application</h6>
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<h5>Responsibilities of ADMIN</h5>
+<h6>Orders Management Page - here Admin user can check all orders made by customers with access to their ProductCart details, OrderTotal, orderID, PaymentStatus and Customer EmailId</h6>
+<h6>Query Ticket Management (Support Ticket) Page  - here Admin can reply back to the customers who made enquiry via contactUs Page. Reply by admin is sent as a Email to the Customer who enquired before, Can manage All query/Support Tickets here</h6>
+<h6>Product CRUD page - here Admin user can manage All products available in the Store. Can Create new Products by using Amazon-S3 for storing images, Can Update Product Information, Can Delete Product (NOT YET IMPLEMENTED IN THIS FRONTEND REPO FOR SAFETY PURPOSES-preventing Loss of Data) and Finally READ/List All Product Information</h6>
+<br>
+<br>
+<h4>Additional Info :</h4>
+<h6>Created 325+ Products in 12 different Sections across various categories(as of Feb 05 2022)</h6>
+<h6>All Product Images are stored in Amazon S3 Bucket (login as ADMIN and create new product to experience AMAZON-S3 integration)</h6>
+<h6>Integrated RazorPay Payment-gateway with Test Mode, Visit App and place an order to experience RazorPay-PaymentGateway Integration</h6>
+<h6>App built with mui-V5 (materialUI V5) components and also added Carousel in LandingPage using react-responsive-carousel library</h6>
+<br>
+<br>
